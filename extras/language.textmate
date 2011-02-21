@@ -1,0 +1,129 @@
+{	scopeName = 'text.nodedoc';
+	fileTypes = ( 'nd', 'nodedoc' );
+	patterns = (
+		{	name = 'source.nodedoc';
+			contentName = 'source.nodedoc';
+			begin = '^(\t|[ ]{4})';
+			end = '$\n';
+			patterns = ( { include = 'source.js'; } );
+		},
+		{	name = 'text.nodedoc';
+			match = '^(Module\:) ([^\(|^$]+) (\([^\)]*\))';
+			captures = {
+				1 = { name = 'constant.nodedoc'; };
+				2 = { name = 'keyword.nodedoc'; };
+				3 = { name = 'variable.nodedoc'; };
+			};
+		},
+		{	name = 'text.nodedoc';
+			begin = '^(Param\:) ([^\s]*) ';
+			end = '$\n?';
+			beginCaptures = {
+				1 = { name = 'entity.nodedoc'; };
+				2 = { name = 'string.nodedoc'; };
+			};
+			patterns = (
+				{	begin = '(\{)';
+					end = '(\})';
+					beginCaptures = { 1 = { name = 'meta.bracket.nodedoc'; }; };
+					endCaptures = { 1 = { name = 'meta.bracket.nodedoc'; }; };
+					patterns = (
+						{	name = 'support.type.nodedoc';
+							match = '([A-Z][a-z]+)';
+						},
+						{	name = 'meta.bracket.nodedoc';
+							match = '(\|)';
+						},
+						{	name = 'text.plain.nodedoc';
+							match = '(\([^\)]+\))';
+						},
+					);
+				},
+				{	include = '#inline'; },
+			);
+		},
+		{	begin = '^(Method\:|Event\:|Property\:) ';
+			end = '$\n?';
+			beginCaptures = { 1 = { name = 'keyword.nodedoc'; }; };
+		},
+		{	begin = '^(Class\:) ';
+			end = '$\n?';
+			beginCaptures = { 1 = { name = 'constant.nodedoc'; }; };
+		},
+		{	name = 'meta.preprocessor.c.nodedoc';
+			begin = '^([#]{1,6})';
+			end = '$\n?';
+		},
+		{	include = '#inline'; },
+	);
+	repository = {
+		bold = {
+			name = 'markup.bold.nodedoc';
+			begin = '(?x)(\*\*)(?=\S)';
+			end = '(?<=\S)(\*\*)';
+			captures = { 1 = { name = 'punctuation.definition.bold.nodedoc'; }; };
+			patterns = (
+				{	include = '#raw'; },
+				{	include = '#italic'; },
+				{	include = '#link'; },
+			);
+		};
+		heading = {
+			name = 'markup.heading.nodedoc';
+			contentName = 'entity.name.section.nodedoc';
+			begin = '\G(#{1,6})(?!#) (?=\S)';
+			end = ' $\n?';
+			captures = { 1 = { name = 'punctuation.definition.heading.nodedoc'; }; };
+			patterns = ( { include = '#inline'; } );
+		};
+		inline = {
+			patterns = (
+				{	include = '#raw'; },
+				{	include = '#bold'; },
+				{	include = '#italic'; },
+				{	include = '#link'; },
+			);
+		};
+		italic = {
+			name = 'markup.italic.nodedoc';
+			begin = '(?x)(\_)(?=\S)';
+			end = '(?<=\S)(\_)';
+			captures = { 1 = { name = 'punctuation.definition.italic.nodedoc'; }; };
+			patterns = (
+				{	include = '#bold'; },
+				{	include = '#raw'; },
+				{	include = '#link'; },
+			);
+		};
+		link = {
+			name = 'meta.link.inline.nodedoc';
+			match = '(?x:
+				(\[)
+					([^\]]+)						# Match the link text.
+				(\])
+					([ ])?						# Space not allowed
+				(\()								# Opening paren for url
+					([^ |\)]*)					# The url
+					(?:
+						[ \t]*					# Optional whitespace
+						([^\)]+)					# Match optional title.
+					)?
+				(\))
+			 )';
+			captures = {
+				1 = { name = 'punctuation.definition.string.begin.nodedoc'; };
+				2 = { name = 'string.other.link.title.nodedoc'; };
+				3 = { name = 'punctuation.definition.string.begin.nodedoc'; };
+				4 = { name = 'invalid.illegal.whitespace.nodedoc'; };
+				6 = { name = 'markup.underline.link.nodedoc'; };
+				8 = { name = 'sting.other.link.title.nodedoc'; };
+			};
+		};
+		raw = {
+			name = 'source.nodedoc';
+			begin = '(`)';
+			end = '(`)';
+			patterns = ( { include = 'source.js'; } );
+		};
+	};
+}

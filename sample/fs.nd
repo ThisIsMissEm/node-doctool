@@ -1,4 +1,8 @@
-## File System
+Module: Test (test)
+
+Fooo..
+
+Module: File System (fs)
 
 File I/O is provided by simple wrappers around standard POSIX functions.  To
 use this module do `require('fs')`. All the methods have asynchronous and
@@ -12,7 +16,7 @@ completed successfully, then the first argument will be `null` or `undefined`.
 Here is an example of the asynchronous version:
 
     var fs = require('fs');
-
+		
     fs.unlink('/tmp/hello', function (err) {
       if (err) throw err;
       console.log('successfully deleted /tmp/hello');
@@ -21,7 +25,7 @@ Here is an example of the asynchronous version:
 Here is the synchronous version:
 
     var fs = require('fs');
-
+		
     fs.unlinkSync('/tmp/hello')
     console.log('successfully deleted /tmp/hello');
 
@@ -32,6 +36,7 @@ following is prone to error:
       if (err) throw err;
       console.log('renamed complete');
     });
+		
     fs.stat('/tmp/world', function (err, stats) {
       if (err) throw err;
       console.log('stats: ' + JSON.stringify(stats));
@@ -52,55 +57,53 @@ In busy processes, the programmer is _strongly encouraged_ to use the
 asynchronous versions of these calls. The synchronous versions will block
 the entire process until they complete--halting all connections.
 
-----
 
-### fs.rename(path1, path2, [callback])
-
+Method: fs.rename(path1, path2, [callback])
 Param: path1 {String} The original file path
-Param: path2 {String} The new file path
+Param: path2 {String|Foo} The new file path
 Param: callback {Function(err)} Optional [callback](../callbacks.html).
 
 Asynchronous [rename(2)](http://kernel.org/doc/man-pages/online/pages/man2/rename.2.html).
 
-### fs.renameSync(path1, path2)
 
+Method: fs.renameSync(path1, path2)
 Param: path1 {String} The original file path
 Param: path2 {String} The new file path
 
 Synchronous [rename(2)](http://kernel.org/doc/man-pages/online/pages/man2/rename.2.html).
 
-### fs.truncate(fd, len, [callback])
 
+Method: fs.truncate(fd, len, [callback])
 Param: fd {fd} The file descriptor to operate on.
 Param: len {Integer} The length to truncate the file to.
 Param: callback {Function(err)} Optional [callback](../callbacks.html).
 
 Asynchronous [ftruncate(2)](http://kernel.org/doc/man-pages/online/pages/man2/ftruncate.2.html).
 
-### fs.truncateSync(fd, len)
 
+Method: fs.truncateSync(fd, len)
 Param: fd {fd} The file descriptor to operate on.
 Param: len {Integer} The length to truncate the file to.
 
 Synchronous [ftruncate(2)](http://kernel.org/doc/man-pages/online/pages/man2/ftruncate.2.html).
 
-### fs.chmod(path, mode, [callback])
 
+Method: fs.chmod(path, mode, [callback])
 Param: path {String} The path to the file to chmod.
 Param: mode {Integer} The permissions to use.
 Param: callback {Function(err)} Optional [callback](../callbacks.html).
 
 Asynchronous [chmod(2)](http://kernel.org/doc/man-pages/online/pages/man2/chmod.2.html).
 
-### fs.chmodSync(path, mode)
 
+Method: fs.chmodSync(path, mode)
 Param: path {String} The path to the file to chmod.
 Param: mode {Integer} The permissions to use.
 
 Synchronous [chmod(2)](http://kernel.org/doc/man-pages/online/pages/man2/chmod.2.html).
 
-### fs.stat(path, [callback])
 
+Method: fs.stat(path, [callback])
 Param: path {String} The path to the file to stat.
 Param: callback {Function(err, stats)} Optional [callback](../callbacks.html).
 
@@ -122,138 +125,138 @@ Asynchronous [stat(2)](http://kernel.org/doc/man-pages/online/pages/man2/stat.2.
       ctime: '2009-06-29T11:11:40Z'
     }
 
-### fs.lstat(path, [callback])
 
+Method: fs.lstat(path, [callback])
 Param: path {String} The path to the file to stat.
 Param: callback {Function(err, stats)} Optional [callback](../callbacks.html).
 
 Asynchronous [lstat(2)](http://kernel.org/doc/man-pages/online/pages/man2/lstat.2.html). The `stats` argument passed to the callback is a `fs.Stats` object. See the [fs.Stats](#fs.Stats) section below for more information. `fs.lstat` is identical to [`fs.stat`](#fs.stat), except that if
 path is a symbolic link, then the link itself is operated on, not the file that it refers to.
 
-### fs.fstat(fd, [callback])
 
+Method: fs.fstat(fd, [callback])
 Param: path {String} The path to the file to stat.
 Param: callback {Function(err, stats)} Optional [callback](../callbacks.html).
 
 Asynchronous [fstat(2)](http://kernel.org/doc/man-pages/online/pages/man2/fstat.2.html). The `stats` argument passed to the callback is a `fs.Stats` object. See the [fs.Stats](#fs.Stats) section below for more information.
 
-### fs.statSync(path)
 
+Method: fs.statSync(path)
 Param: path {String} The path to the file to stat.
 
 Synchronous [stat(2)](http://kernel.org/doc/man-pages/online/pages/man2/stat.2.html). Returns an instance of `fs.Stats`.
 
-### fs.lstatSync(path)
 
+Method: fs.lstatSync(path)
 Param: path {String} The path to the file to stat.
 
 Synchronous [lstat(2)](http://kernel.org/doc/man-pages/online/pages/man2/lstat.2.html). Returns an instance of `fs.Stats`.
 
-### fs.fstatSync(fd)
 
+Method: fs.fstatSync(fd)
 Param: path {String} The path to the file to stat.
 
 Synchronous [fstat(2)](http://kernel.org/doc/man-pages/online/pages/man2/fstat.2.html). Returns an instance of `fs.Stats`.
 
-### fs.link(srcpath, dstpath, [callback])
 
+Method: fs.link(srcpath, dstpath, [callback])
 Param: srcpath {String} The source file path.
 Param: dstpath {String} The destination path.
 Param: callback {Function(err)} Optional [callback](callbacks.html)
 
 Asynchronous [link(2)](http://kernel.org/doc/man-pages/online/pages/man2/link.2.html).
 
-### fs.linkSync(srcpath, dstpath)
 
+Method: fs.linkSync(srcpath, dstpath)
 Param: srcpath {String} The source file path.
 Param: dstpath {String} The destination path.
 
 Synchronous [link(2)](http://kernel.org/doc/man-pages/online/pages/man2/link.2.html).
 
-### fs.symlink(srcpath, dstpath, [callback])
 
+Method: fs.symlink(srcpath, dstpath, [callback])
 Param: srcpath {String} The source file path.
 Param: dstpath {String} The destination path.
 Param: callback {Function(err)} Optional [callback](callbacks.html)
 
 Asynchronous [symlink(2)](http://kernel.org/doc/man-pages/online/pages/man2/symlink.2.html).
 
-### fs.symlinkSync(srcpath, dstpath)
 
+Method: fs.symlinkSync(srcpath, dstpath)
 Param: srcpath {String} The source file path.
 Param: dstpath {String} The destination path.
 
 Synchronous [symlink(2)](http://kernel.org/doc/man-pages/online/pages/man2/symlink.2.html).
 
-### fs.readlink(path, [callback])
 
+Method: fs.readlink(path, [callback])
 Param: path {String} The path to operate on.
 Param: callback {Function(err, resolvedPath)} Optional [callback](callbacks.html)
 
 Asynchronous [readlink(2)](http://kernel.org/doc/man-pages/online/pages/man2/readlink.2.html). The callback argument `resolvedPath` is a string of the path which the link points to.
 
-### fs.readlinkSync(path)
 
+Method: fs.readlinkSync(path)
 Param: path {String} The path to operate on.
 
 Synchronous [readlink(2)](http://kernel.org/doc/man-pages/online/pages/man2/readlink.2.html). Returns the resolved path.
 
-### fs.realpath(path, [callback])
 
+Method: fs.realpath(path, [callback])
 Param: path {String} The path to operate on.
 Param: callback {Function(err, resolvedPath)} Optional [callback](callbacks.html)
 
 Asynchronous [realpath(2)](http://kernel.org/doc/man-pages/online/pages/man2/realpath.2.html). The callback argument `resolvedPath` is a string of the path which the `path` points to.
 
-### fs.realpathSync(path)
 
+Method: fs.realpathSync(path)
 Param: path {String} The path to operate on.
 
 Synchronous [realpath(2)](http://kernel.org/doc/man-pages/online/pages/man2/realpath.2.html). Returns the resolved path.
 
-### fs.unlink(path, [callback])
 
+Method: fs.unlink(path, [callback])
 Param: path {String} The path to operate on.
 Param: callback {Function(err)} Optional [callback](callbacks.html)
 
 Asynchronous [unlink(2)](http://kernel.org/doc/man-pages/online/pages/man2/unlink.2.html).
 
-### fs.unlinkSync(path)
 
+Method: fs.unlinkSync(path)
 Param: path {String} The path to operate on.
 
 Synchronous [unlink(2)](http://kernel.org/doc/man-pages/online/pages/man2/unlink.2.html).
 
-### fs.rmdir(path, [callback])
 
+Method: fs.rmdir(path, [callback])
 Param: path {String} The path to operate on.
 Param: callback {Function(err)} Optional [callback](callbacks.html)
 
 Asynchronous [rmdir(2)](http://kernel.org/doc/man-pages/online/pages/man2/rmdir.2.html).
 
-### fs.rmdirSync(path)
 
+Method: fs.rmdirSync(path)
 Param: path {String} The path to operate on.
 
 Synchronous [rmdir(2)](http://kernel.org/doc/man-pages/online/pages/man2/rmdir.2.html).
 
-### fs.mkdir(path, mode, [callback])
 
+Method: fs.mkdir(path, mode, [callback])
 Param: path {String} The path to operate on.
 Param: mode {Integer} The permissions to set on the newly created directory.
 Param: callback {Function(err)} Optional [callback](callbacks.html)
 
 Asynchronous [mkdir(2)](http://kernel.org/doc/man-pages/online/pages/man2/mkdir.2.html).
 
-### fs.mkdirSync(path, mode)
 
+Method: fs.mkdirSync(path, mode)
 Param: path {String} The path to operate on.
 Param: mode {Integer} The permissions to set on the newly created directory.
 
 Synchronous [mkdir(2)](http://kernel.org/doc/man-pages/online/pages/man2/mkdir.2.html).
 
-### fs.readdir(path, [callback])
 
+Method: fs.readdir(path, [callback])
 Param: path {String} The path to operate on.
 Param: callback {Function(err, files)} Optional [callback](callbacks.html)
 
@@ -261,27 +264,27 @@ Asynchronous [readdir(3)](http://kernel.org/doc/man-pages/online/pages/man3/read
 
 The `files` argument of the callback is an array of filenames in the directory excluding `'.'` and `'..'`.
 
-### fs.readdirSync(path)
 
+Method: fs.readdirSync(path)
 Param: path {String} The path to operate on.
 
 Synchronous [readdir(3)](http://kernel.org/doc/man-pages/online/pages/man3/readdir.3.html). Returns an array of filenames in the directory excluding `'.'` and `'..'`.
 
-### fs.close(fd, [callback])
 
+Method: fs.close(fd, [callback])
 Param: fd {fd} The file descriptor to operate on.
 Param: callback {Function(err)} Optional [callback](callbacks.html)
 
 Asynchronous [close(2)](http://kernel.org/doc/man-pages/online/pages/man2/close.2.html).
 
-### fs.closeSync(fd)
 
+Method: fs.closeSync(fd)
 Param: fd {fd} The file descriptor to operate on.
 
 Synchronous [close(2)](http://kernel.org/doc/man-pages/online/pages/man2/close.2.html).
 
-### fs.open(path, flags, [mode], [callback])
 
+Method: fs.open(path, flags, [mode], [callback])
 Param: path {String} The path to operate on.
 Param: flags {String|Integer} The flags to open (or create) the file with.
 Param: mode {Integer} The permissions to use in case a new file is created.
@@ -291,8 +294,8 @@ Param: callback {Function(err, fd)} Optional [callback](callbacks.html)
 Asynchronous [open(2)](http://kernel.org/doc/man-pages/online/pages/man2/open.2.html). The argument `flags` can be in the form of a string: 'r', 'r+', 'w', 'w+', 'a',
 or 'a+'; or can be an integer value, for an example see the `stringToFlags` function inside the `fs` module.
 
-### fs.openSync(path, flags, [mode])
 
+Method: fs.openSync(path, flags, [mode])
 Param: path {String} The path to operate on.
 Param: flags {String|Integer} The flags to open (or create) the file with.
 Param: mode {Integer} The permissions to use in case a new file is created.
@@ -300,8 +303,8 @@ Param: mode {Integer} The permissions to use in case a new file is created.
 Synchronous [open(2)](http://kernel.org/doc/man-pages/online/pages/man2/open.2.html). The argument `flags` can be in the form of a string: 'r', 'r+', 'w', 'w+', 'a',
 or 'a+'; or can be an integer value, for an example see the `stringToFlags` function inside the `fs` module.
 
-### fs.write(fd, buffer, offset, length, position, [callback])
 
+Method: fs.write(fd, buffer, offset, length, position, [callback])
 Param: fd {fd} The file descriptor to operate on.
 Param: buffer {Buffer} The buffer to write to the file.
 Param: offset {Integer} The offset within the buffer to write.
@@ -315,8 +318,8 @@ If `position` is `null`, the data will be written at the current position. See [
 
 The callback argument `written` specifies how many _bytes_ were actually written.
 
-### fs.writeSync(fd, buffer, offset, length, position)
 
+Method: fs.writeSync(fd, buffer, offset, length, position)
 Param: fd {fd} The file descriptor to operate on.
 Param: buffer {Buffer} The buffer to write to the file.
 Param: offset {Integer} The offset within the buffer to write.
@@ -326,8 +329,8 @@ Param: position {Integer} The position from the beginning of the file to start w
 Synchronous version of buffer-based `fs.write()`. Returns the number of bytes
 written.
 
-### fs.read(fd, buffer, offset, length, position, [callback])
 
+Method: fs.read(fd, buffer, offset, length, position, [callback])
 Param: fd {fd} The file descriptor to operate on.
 Param: buffer {Buffer} The buffer to read data from the file into.
 Param: offset {Integer} The offset within the buffer from where data will start to be read into.
@@ -339,8 +342,8 @@ Read data from the file specified by `fd`. If `position` is `null`, data will be
 
 The callback arguments `bytesRead` specifies the number of bytes successfully read.
 
-### fs.readSync(fd, buffer, offset, length, position)
 
+Method: fs.readSync(fd, buffer, offset, length, position)
 Param: fd {fd} The file descriptor to operate on.
 Param: buffer {Buffer} The buffer to read data from the file into.
 Param: offset {Integer} The offset within the buffer from where data will start to be read into.
@@ -349,8 +352,8 @@ Param: position {Integer} The position from the beginning of the file to start r
 
 Synchronous version of `fs.read`. Returns the number of `bytesRead`.
 
-### fs.readFile(path, [encoding], [callback])
 
+Method: fs.readFile(path, [encoding], [callback])
 Param: path {String} The path to operate on.
 Param: encoding {String} The optional [Buffer encoding](buffers.html#encodings) to use.
 Param: callback {Function(err, data)} Optional [callback](callbacks.html)
@@ -359,8 +362,8 @@ Asynchronously reads the entire contents of a file.
 
 The callback argument `data` is the contents of the file. If no `encoding` is specified, then the raw buffer is returned.
 
-### fs.readFileSync(filename, [encoding])
 
+Method: fs.readFileSync(filename, [encoding])
 Param: path {String} The path to operate on.
 Param: encoding {String} The optional [Buffer encoding](buffers.html#encodings) to use.
 
@@ -369,8 +372,7 @@ Synchronous version of `fs.readFile`.
 Returns the contents of the `filename`. If no `encoding` is specified, then the raw buffer is returned.
 
 
-### fs.writeFile(path, data, [encoding], [callback])
-
+Method: fs.writeFile(path, data, [encoding], [callback])
 Param: path {String} The path to operate on.
 Param: data {String|Buffer} The data to write to the file.
 Param: encoding {String} The optional [Buffer encoding](buffers.html#encodings) to use.
@@ -385,16 +387,16 @@ Example:
       console.log('It\'s saved!');
     });
 
-### fs.writeFileSync(filename, data, [encoding])
 
+Method: fs.writeFileSync(filename, data, [encoding])
 Param: path {String} The path to operate on.
 Param: data {String|Buffer} The data to write to the file.
 Param: encoding {String} The optional [Buffer encoding](buffers.html#encodings) to use.
 
 The synchronous version of `fs.writeFile`.
 
-### fs.watchFile(path, [options], callback)
 
+Method: fs.watchFile(path, [options], callback)
 Param: path {String} The path to operate on.
 Param: options {Object} The options for the watcher.
 Param: callback {Function(curr, prev)} Optional [callback](callbacks.html)
@@ -405,7 +407,7 @@ The `options` object is optional. If provided it should have two members `persis
 
 Watch for changes on `filename`. The callback `listener` will be called each
 time the file is accessed. If you want to be notified when the file was modified, not just accessed
-you need to compare `curr.mtime` and `prev.mtime.
+you need to compare `curr.mtime` and `prev.mtime`.
 
 The second argument is optional. The `options` if provided should be an object
 containing two members a boolean, `persistent`, and `interval`, a polling
@@ -419,58 +421,16 @@ The `callback` gets two arguments the current and previous
       console.log('the previous mtime was: ' + prev.mtime);
     });
 
-### fs.unwatchFile(path)
 
+Method: fs.unwatchFile(path)
 Param: path {String} The path to operate on.
 
 Stop watching for changes on `path`.
 
-## fs.Stats
 
-Objects returned from `fs.stat()` and `fs.lstat()` are of this type.
+Method: fs.createReadStream(path, [options])
 
- - `stats.isFile()`
- - `stats.isDirectory()`
- - `stats.isBlockDevice()`
- - `stats.isCharacterDevice()`
- - `stats.isSymbolicLink()` (only valid with  `fs.lstat()`)
- - `stats.isFIFO()`
- - `stats.isSocket()`
-
-
-## fs.ReadStream
-
-`ReadStream` is a `Readable Stream`.
-
-### Event: open
-
-Param: fd {fd} The file descriptor that has opened.
-
-Emitted when the file becomes open for reading. `fd` is the file descriptor used by the ReadStream.
-
-### Event: end
-
-Emitted after all data has been read.
-
-### Event: close
-
-Emitted when the file descriptor is closed.
-
-### Event: error
-
-Param: err {Error} The error which occured.
-
-Emitted if an error has occured while working with the ReadStream; This could, for example, be triggered by a file not being able to be opened for reading.
-
-### Event: data
-
-Param: data {String|Buffer} The data that was just read.
-
-Emitted as data is read from the file descriptor.
-
-### fs.createReadStream(path, [options])
-
-Returns a new ReadStream object (See `Readable Stream`).
+Returns a new [fs.ReadStream](#fs.ReadStream).
 
 `options` is an object with the following defaults:
 
@@ -488,36 +448,87 @@ An example to read the last 10 bytes of a file which is 100 bytes long:
     fs.createReadStream('sample.txt', {start: 90, end: 99});
 
 
-## fs.WriteStream
+Method: fs.createWriteStream(path, [options])
 
-`WriteStream` is a `Writable Stream`.
-
-### Event: drain
-
-Emitted after all queued operations on the WriteStream have completed.
-
-### Event: open
-
-Param: fd {fd} The file descriptor that has opened.
-
-Emitted when the file becomes open for writing. `fd` is the file descriptor used by the WriteStream.
-
-### Event: close
-
-Emitted after all data has been written and the file descriptor closed.
-
-### Event: error
-
-Param: err {Error} The error which occured.
-
-Emitted if an error has occured while working with the WriteStream; This could, for example, be triggered by a file not being able to be opened for writing.
-
-### fs.createWriteStream(path, [options])
-
-Returns a new WriteStream object (See `Writable Stream`).
+Returns a new [fs.WriteStream](#fs.WriteStream) object.
 
 `options` is an object with the following defaults:
 
     { flags: 'w',
       encoding: null,
       mode: 0666 }
+
+Class: fs.Stats
+
+Objects returned from `fs.stat()` and `fs.lstat()` are of this type.
+
+ - `stats.isFile()`
+ - `stats.isDirectory()`
+ - `stats.isBlockDevice()`
+ - `stats.isCharacterDevice()`
+ - `stats.isSymbolicLink()` (only valid with  `fs.lstat()`)
+ - `stats.isFIFO()`
+ - `stats.isSocket()`
+
+
+Class: fs.ReadStream
+Inherits: streams.Stream
+Inherits: Events.EventEmitter
+
+`ReadStream` is a `Readable Stream`.
+
+
+Event: open
+Param: fd {fd} The file descriptor that has opened.
+
+Emitted when the file becomes open for reading. `fd` is the file descriptor used by the ReadStream.
+
+
+Event: end
+
+Emitted after all data has been read.
+
+
+Event: close
+
+Emitted when the file descriptor is closed.
+
+
+Event: error
+Param: err {Error} The error which occured.
+
+Emitted if an error has occured while working with the ReadStream; This could, for example, be triggered by a file not being able to be opened for reading.
+
+
+Event: data
+Param: data {String|Buffer} The data that was just read.
+
+Emitted as data is read from the file descriptor.
+
+
+Class: fs.WriteStream
+Inherits: streams.Stream
+
+`WriteStream` is a `Writable Stream`.
+
+
+Event: drain
+
+Emitted after all queued operations on the WriteStream have completed.
+
+
+Event: open
+Param: fd {fd} The file descriptor that has opened.
+
+Emitted when the file becomes open for writing. `fd` is the file descriptor used by the WriteStream.
+
+
+Event: close
+
+Emitted after all data has been written and the file descriptor closed.
+
+
+Event: error
+Param: err {Error} The error which occured.
+
+Emitted if an error has occured while working with the WriteStream; This could, for example, be triggered by a file not being able to be opened for writing.
