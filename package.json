@@ -3,13 +3,13 @@
     "description": "The official documentation parser/generator for Node.js",
     "repository": {
         "type": "git",
-        "url": "http://github.com/votizen/node-doctool.git"
+        "url": "http://github.com/miksago/node-doctool.git"
     },
     "main": "./lib/index.js",
     "bugs": {
-        "web": "http://github.com/votizen/node-doctool/issues"
+        "web": "http://github.com/miksago/node-doctool/issues"
     },
-    "author": "Micheil Smith <micheil@votizen.com>",
+    "author": "Micheil Smith <micheil@brandedcode.com>",
     "licenses": [{
         "type": "MIT",
         "url": "./LICENSE.md"

@@ -8,7 +8,7 @@
 			patterns = ( { include = 'source.js'; } );
 		},
 		{	name = 'text.nodedoc';
-			match = '^(Module\:) ([^\(|^$]+) (\([^\)]*\))';
+			match = '^(Module\:)\s*([^\(|^$]+)\s*(\([^\)]*\))';
 			captures = {
 				1 = { name = 'constant.nodedoc'; };
 				2 = { name = 'keyword.nodedoc'; };
@@ -16,7 +16,7 @@
 			};
 		},
 		{	name = 'text.nodedoc';
-			begin = '^(Param\:) ([^\s]*) ';
+			begin = '^(Param\:)\s*([^\s]*)\s*';
 			end = '$\n?';
 			beginCaptures = {
 				1 = { name = 'entity.nodedoc'; };
@@ -42,11 +42,15 @@
 				{	include = '#inline'; },
 			);
 		},
-		{	begin = '^(Method\:|Event\:|Property\:) ';
+		{	begin = '^(Method\:|Event\:|Property\:)\s*';
 			end = '$\n?';
 			beginCaptures = { 1 = { name = 'keyword.nodedoc'; }; };
 		},
-		{	begin = '^(Class\:) ';
+		{	begin = '^(Inherits\:)\s*';
+			end = '$\n?';
+			beginCaptures = { 1 = { name = 'keyword.nodedoc'; }; };
+		},
+		{	begin = '^(Class\:)\s*';
 			end = '$\n?';
 			beginCaptures = { 1 = { name = 'constant.nodedoc'; }; };
 		},
@@ -71,8 +75,8 @@
 		heading = {
 			name = 'markup.heading.nodedoc';
 			contentName = 'entity.name.section.nodedoc';
-			begin = '\G(#{1,6})(?!#) (?=\S)';
-			end = ' $\n?';
+			begin = '\G(#{1,6})(?!#)\s*(?=\S)';
+			end = '\s*$\n?';
 			captures = { 1 = { name = 'punctuation.definition.heading.nodedoc'; }; };
 			patterns = ( { include = '#inline'; } );
 		};

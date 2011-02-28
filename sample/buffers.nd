@@ -1,4 +1,4 @@
-> Buffers
+Class: Buffers
 
 Pure Javascript is Unicode friendly but not nice to binary data.  When
 dealing with TCP streams or the file system, it's necessary to handle octet
@@ -29,19 +29,19 @@ should be avoided in favor of `Buffer` objects where possible. This encoding
 will be removed in future versions of Node.
 
 
->> new Buffer(size)
+Method: new Buffer(size)
 
 Allocates a new buffer of `size` octets.
 
->> new Buffer(array)
+Method: new Buffer(array)
 
 Allocates a new buffer using an `array` of octets.
 
->> new Buffer(str, encoding='utf8')
+Method: new Buffer(str, encoding='utf8')
 
 Allocates a new buffer containing the given `str`.
 
->> buffer.write(string, offset=0, encoding='utf8')
+Method: buffer.write(string, offset=0, encoding='utf8')
 
 Writes `string` to the buffer at `offset` using the given encoding. Returns
 number of octets written.  If `buffer` did not contain enough space to fit
@@ -57,7 +57,7 @@ Example: write a utf8 string into a buffer, then print it
     // 12 bytes: ½ + ¼ = ¾
 
 
->> buffer.toString(encoding, start=0, end=buffer.length)
+Method: buffer.toString(encoding, start=0, end=buffer.length)
 
 Decodes and returns a string from buffer data encoded with `encoding`
 beginning at `start` and ending at `end`.
@@ -65,7 +65,7 @@ beginning at `start` and ending at `end`.
 See `buffer.write()` example, above.
 
 
->> buffer[index]
+Method: buffer[index]
 
 Get and set the octet at `index`. The values refer to individual bytes,
 so the legal range is between `0x00` and `0xFF` hex or `0` and `255`.
@@ -83,11 +83,11 @@ Example: copy an ASCII string into a buffer, one byte at a time:
 
     // node.js
 
->> Buffer.isBuffer(obj)
+Method: Buffer.isBuffer(obj)
 
 Tests if `obj` is a `Buffer`.
 
->> Buffer.byteLength(string, encoding='utf8')
+Method: Buffer.byteLength(string, encoding='utf8')
 
 Gives the actual byte length of a string.  This is not the same as
 `String.prototype.length` since that returns the number of *characters* in a
@@ -103,7 +103,7 @@ Example:
     // ½ + ¼ = ¾: 9 characters, 12 bytes
 
 
->> buffer.length
+Property: buffer.length
 
 The size of the buffer in bytes.  Note that this is not necessarily the size
 of the contents. `length` refers to the amount of memory allocated for the
@@ -118,7 +118,7 @@ buffer object.  It does not change when the contents of the buffer are changed.
     // 1234
     // 1234
 
->> buffer.copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+Method: buffer.copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
 
 Does a memcpy() between buffers.
 
@@ -139,7 +139,7 @@ into `buf2`, starting at the 8th byte in `buf2`.
     // !!!!!!!!qrst!!!!!!!!!!!!!
 
 
->> buffer.slice(start, end=buffer.length)
+Method: buffer.slice(start, end=buffer.length)
 
 Returns a new buffer which references the
 same memory as the old, but offset and cropped by the `start` and `end`

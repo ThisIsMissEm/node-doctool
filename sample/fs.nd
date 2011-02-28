@@ -57,6 +57,9 @@ In busy processes, the programmer is _strongly encouraged_ to use the
 asynchronous versions of these calls. The synchronous versions will block
 the entire process until they complete--halting all connections.
 
+Property: fs.foo
+
+...
 
 Method: fs.rename(path1, path2, [callback])
 Param: path1 {String} The original file path
@@ -66,7 +69,9 @@ Param: callback {Function(err)} Optional [callback](../callbacks.html).
 Asynchronous [rename(2)](http://kernel.org/doc/man-pages/online/pages/man2/rename.2.html).
 
 
-Method: fs.renameSync(path1, path2)
+== Method: fs.renameSync(path1, path2)
+
+- path1, String, The original file path
 Param: path1 {String} The original file path
 Param: path2 {String} The new file path
 
