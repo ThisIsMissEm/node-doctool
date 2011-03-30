@@ -1,0 +1,135 @@
+
+{
+	"modules": [
+		{
+			"name": "File System",
+			"require": "fs",
+			"description": [
+				{
+					"type": "heading",
+					"value": "...",
+					"level": 3
+				},
+				{
+					"type": "text",
+					"value": "..."
+				},
+				{
+					"type": "code",
+					"value": "..."}
+			],
+			"methods": [
+				{
+					"name": "rename",
+					"signature": "path1, path2, callback",
+					"parameters": [
+						{
+							"name": "path1",
+							"optional": false,
+							"types": ["String"],
+							"description": "..."
+						},
+						{
+							"name": "path2",
+							"optional": false,
+							"types": ["String"],
+							"description": "..."
+						},
+						{
+							"name": "callback",
+							"optional": true,
+							"types": ["Function"],
+							"description": "..."
+						}
+					],
+					"description": [
+						"see the first description node"
+					]
+				}
+			],
+
+			"properties": [
+				{
+					"name": "foo",
+					"value": "bar"
+					"types": ["String"],
+					"description": []
+				}
+			],
+
+			"events": [
+				{
+					"name": "connection",
+					"signature": "socket",
+					"parameters": [
+						{
+							"name": "socket",
+							"types": ["Stream"],
+							"description": "..."
+						},
+					],
+					"description": []
+				}
+			],
+
+			"constructors": [
+				{
+					"name": "ReadStream",
+					"inherits": ["Stream", "EventEmitter"],
+					"description": [],
+					"methods": [
+						{
+							"name": "rename",
+							"signature": "path1, path2, callback",
+							"parameters": [
+								{
+									"name": "path1",
+									"optional": false,
+									"types": ["String"],
+									"description": "..."
+								},
+								{
+									"name": "path2",
+									"optional": false,
+									"types": ["String"],
+									"description": "..."
+								},
+								{
+									"name": "callback",
+									"optional": true,
+									"types": ["Function"],
+									"description": "..."
+								}
+							],
+							"description": []
+						}
+					],
+
+					"properties": [
+						{
+							"name": "foo",
+							"value": "bar"
+							"types": ["String"],
+							"description": []
+						}
+					],
+
+					"events": [
+						{
+							"name": "connection",
+							"signature": "socket",
+							"parameters": [
+								{
+									"name": "socket",
+									"types": ["Stream"],
+									"description": "..."
+								},
+							],
+							"description": []
+						}
+					],
+				}
+			],
+		}
+	]
+}
